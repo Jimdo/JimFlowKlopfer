@@ -30,6 +30,7 @@ class Scanner(object):
                 img_crop = self.image.crop(crop_to)
                 self.scan_image(img_crop, x_start, y_start)
                 ix += 1
+        return self.symbols
 
     def get_qr_code_size(self):
         zbar_img = zbar.Image(self.width, self.height, 'Y800', self.image.tostring())
