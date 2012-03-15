@@ -18,6 +18,7 @@ dir = directory.Directory(os, import_dir, ['jpg', 'jpeg'])
 imagefile = dir.get_oldest_file()
 scan = scanner.Scanner(imagefile.name)
 informations = scan.scan()
+os.remove(imagefile.name)
 mapping = mapper.Mapper(informations)
 board_id = mapping.board_id
 cards = mapping.get_cards()
