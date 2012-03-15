@@ -10,7 +10,7 @@ class MapperTest(unittest.TestCase):
         self.columns_count = -1
         for i in range(0, 8, 1):    
             symbol = Mock()
-            symbol.location = ((0+(8-i)*20,0),((8-i)*20,10),(10+(8-i)*20,10),(10+(8-i)*20,0))
+            symbol.location = ((0+(7-i)*20,0),((7-i)*20,10),(10+(7-i)*20,10),(10+(7-i)*20,0))
             symbol.data = "__"
             self.symbols.append(symbol)
             self.columns_count += 1
@@ -31,7 +31,7 @@ class MapperTest(unittest.TestCase):
     
     def test_set_symbols(self):
         test_mapper = mapper.Mapper(self.symbols)
-        self.assertEqual(self.symbols, test_mapper.symbols)
+        self.assertEqual(self.symbols, test_mapper.informations)
 
     def test_get_board_id(self):
         test_mapper = mapper.Mapper(self.symbols)
@@ -65,6 +65,12 @@ class MapperTest(unittest.TestCase):
 
     def test_get_cards_only(self):
         test_mapper = mapper.Mapper(self.symbols)
-        cards = test_mapper.cards
-        self.assertEqual(len(cards), self.cards_count)        
+        cards = test_mapper.get_cards()
+        self.assertEqual(len(cards), self.cards_count)     
 
+    def test_column_for_card(self):
+        test_mapper = mapper.Mapper(self.symbols) 
+        cards = test_mapper.get_cards()
+
+        for card in cards:
+            self.assertEqual(card.column, cards.index(card))

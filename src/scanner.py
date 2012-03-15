@@ -1,13 +1,14 @@
 import zbar
 import Image
 import ImageDraw
+import kanban
 
 
 class Scanner(object):
     def __init__(self, imagepath):
         self.image = Image.open(imagepath).convert('L')
         self.width, self.height = self.image.size
-        self.symbols = []
+        self.informations = []
         # create a reader
         self.scanner = zbar.ImageScanner()
         # configure the scanner
@@ -30,7 +31,7 @@ class Scanner(object):
                 img_crop = self.image.crop(crop_to)
                 self.scan_image(img_crop, x_start, y_start)
                 ix += 1
-        return self.symbols
+        return self.informations
 
     def get_qr_code_size(self):
         zbar_img = zbar.Image(self.width, self.height, 'Y800', self.image.tostring())
@@ -61,5 +62,5 @@ class Scanner(object):
             bottom_left = (symbol.location[1][0] + x_start, symbol.location[1][1] + y_start)
             bottom_right = (symbol.location[2][0] + x_start, symbol.location[2][1] + y_start)
             top_right = (symbol.location[3][0] + x_start, symbol.location[3][1] + y_start)
-            self.symbols.append(symbol)
+            self.informations.append(kanban.Information(symbol.data, (top_left, bottom_left, bottom_right, top_right)))
             draw.rectangle([(top_left), (bottom_right)], fill="black")

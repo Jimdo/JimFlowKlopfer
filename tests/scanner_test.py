@@ -17,4 +17,4 @@ class ScannerTest(unittest.TestCase):
     def test_scanner_works(self):
         scan = scanner.Scanner('tests/test_board.jpg')
         scan.scan()
-        self.assertTrue(len(scan.symbols) == 13, 'error scanning all symbols')
+        self.assertTrue(len(scan.informations) == 13, 'error scanning all symbols')
