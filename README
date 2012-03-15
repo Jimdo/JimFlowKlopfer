@@ -1,0 +1,7 @@
+dependencies:
+-python-zbar
+
+
+run:
+
+python main.py import_path export_path
