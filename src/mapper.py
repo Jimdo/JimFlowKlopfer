@@ -1,11 +1,12 @@
 import kanban
 import json
 
-class Mapper(object): 
+
+class Mapper(object):
     def __init__(self, informations):
         self.informations = informations
         self.board_id = None
-        self.columns_count = None 
+        self.columns_count = None
         self.read_config()
         self.columns = self.get_colums()
 
@@ -24,8 +25,8 @@ class Mapper(object):
 
         config_code_data = config_codes[0].data
         config = json.loads(config_code_data)
-        self.board_id = config [0]
-        self.columns_count = config [1]
+        self.board_id = config[0]
+        self.columns_count = config[1]
 
     def get_colums(self):
         columns = []
@@ -33,15 +34,15 @@ class Mapper(object):
         for information in column_informations:
             column = kanban.Column(None, information.location)
             columns.append(column)
-        columns.sort ( key=lambda Area: Area.center_x )
+        columns.sort(key=lambda Area: Area.center_x)
         last_column = None
         for column in columns:
-            if not last_column == None:        
+            if not last_column == None:
                 last_column.x_end = column.center_x
             column.id = columns.index(column)
             last_column = column
         if not last_column == None:
-            columns.remove(last_column) 
+            columns.remove(last_column)
 
         if not self.columns_count == len(columns):
             raise IOError('Klopfer says: Scanned columns count != configured columns count!')
@@ -52,15 +53,14 @@ class Mapper(object):
         cards = []
         card_informations = self.get_informations_starting_with('T')
         for card_information in card_informations:
-            card = kanban.Card(card_information.data, card_information.location)  
+            card = kanban.Card(card_information.data, card_information.location)
             card.column = self.get_column_for_card(card)
             cards.append(card)
-            
+
         return cards
-         
+
     def get_column_for_card(self, card):
         for column in self.columns:
             if column.x_end > card.center_x and card.center_x > column.center_x:
                 return column.id
         return None
-

@@ -50,8 +50,8 @@ class DirectoryTest(unittest.TestCase):
         self.assertEquals(expected, self.directory.get_oldest_file())
 
     def _load_os_file_stubs(self, listdirValues, ctimeValues):
-        self.os.listdir = Mock(return_value = listdirValues)
-        self.os.path.getctime = Mock(side_effect = lambda filename: ctimeValues[filename])
+        self.os.listdir = Mock(return_value=listdirValues)
+        self.os.path.getctime = Mock(side_effect=lambda filename: ctimeValues[filename])
 
     def _listdirValues(self):
         return ['test2.jpg', 'test.jpg']

@@ -6,5 +6,3 @@ from src import board
 
 class BoardTest(unittest.TestCase):
     pass
-
-

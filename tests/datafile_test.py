@@ -12,9 +12,9 @@ class DatafileTest(unittest.TestCase):
         name = self.SOME_NAME
         ctime = self.SOME_CTIME
         dataFile = datafile.Datafile(name, ctime)
-        
-        self.assertTrue(name == dataFile.name, 'Error setting name in constructor')
-        self.assertTrue(ctime == dataFile.ctime, 'Error setting cdate in constructor')
+
+        self.assertTrue(name == dataFile.name, 'Error set name in constructor')
+        self.assertTrue(ctime == dataFile.ctime, 'Error set cdate in constructor')
 
     def test_eq_with_name_and_ctime_are_equal_is_true(self):
         name = self.SOME_NAME
@@ -22,7 +22,7 @@ class DatafileTest(unittest.TestCase):
         dateFileA = datafile.Datafile(name, ctime)
         dateFileB = datafile.Datafile(name, ctime)
         self.assertTrue(dateFileA == dateFileB, 'Error comparing with __eq__')
-        
+
     def test_eq_with_name_is_equal_and_ctime_is_not_equal_false(self):
         name = self.SOME_NAME
         ctimeA = self.SOME_CTIME
@@ -38,5 +38,3 @@ class DatafileTest(unittest.TestCase):
         dateFileA = datafile.Datafile(nameA, ctime)
         dateFileB = datafile.Datafile(nameB, ctime)
         self.assertFalse(dateFileA == dateFileB, 'Error comparing with __eq__')
-
-    

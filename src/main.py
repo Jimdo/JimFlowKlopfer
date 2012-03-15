@@ -23,5 +23,3 @@ board_id = mapping.board_id
 cards = mapping.get_cards()
 current_board = board.Board(board_id, cards)
 current_board.export_json(export_dir)
-
-
