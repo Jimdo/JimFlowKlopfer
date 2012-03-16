@@ -18,4 +18,7 @@ class Directory(object):
 
         dataFiles = sorted(dataFiles, key=lambda datafile: datafile.ctime)
 
+        if len(dataFiles) == 0:
+            raise IOError('Klopfer says: no new file to import')
+
         return dataFiles[0]
