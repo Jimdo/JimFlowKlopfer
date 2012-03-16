@@ -1,4 +1,3 @@
-import zbar
 import datetime
 
 
