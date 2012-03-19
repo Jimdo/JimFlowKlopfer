@@ -1,7 +1,10 @@
 dependencies:
--python-zbar
+-python-zbar (http://pypi.python.org/pypi/zbar)
 
+
+install with pip:
+pip install --user jimkanklopfer/ 
 
 run:
 
-python main.py import_path export_path
+python -m jimkanklopfer /import_path_photos/ /export_path_json/
