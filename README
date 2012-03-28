@@ -5,6 +5,9 @@ dependencies:
 install with pip:
 pip install --user jimkanklopfer/ 
 
+build a dpkg using fpm:
+fpm --description "JimKanKlopfer - reads jpeg, outputs json" --url "https://github.com/Jimdo/jimkanklopfer" -s python -t deb -S 2.7 --depends "python" --depends "python-zbar" setup.py
+
 run:
 
 python -m jimkanklopfer /import_path_photos/ /export_path_json/
