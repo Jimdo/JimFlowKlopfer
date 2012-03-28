@@ -56,6 +56,7 @@ class Scanner(object):
 
         # Create a draw object
         draw = ImageDraw.Draw(self.image)
+        draw_crop = ImageDraw.Draw(img_scan)
 
         for symbol in zbar_img:
             top_left = (symbol.location[0][0] + x_start, symbol.location[0][1] + y_start)
@@ -64,3 +65,6 @@ class Scanner(object):
             top_right = (symbol.location[3][0] + x_start, symbol.location[3][1] + y_start)
             self.informations.append(kanban.Information(symbol.data, (top_left, bottom_left, bottom_right, top_right)))
             draw.rectangle([(top_left), (bottom_right)], fill="black")
+            draw_crop.rectangle([symbol.location[0], symbol.location[2]], fill="black")
+        if len(zbar_img.symbols) > 0:
+            self.scan_image(img_scan, x_start, y_start)
