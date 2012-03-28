@@ -1,12 +1,12 @@
 dependencies:
 -python-zbar (http://pypi.python.org/pypi/zbar)
-
+-python-imaging
 
 install with pip:
 pip install --user jimkanklopfer/ 
 
 build a dpkg using fpm:
-fpm --description "JimKanKlopfer - reads jpeg, outputs json" --url "https://github.com/Jimdo/jimkanklopfer" -s python -t deb -S 2.7 --depends "python" --depends "python-zbar" setup.py
+fpm --description "JimKanKlopfer - reads jpeg, outputs json" --url "https://github.com/Jimdo/jimkanklopfer" -s python -t deb -S 2.7 --depends "python" --depends "python-zbar" --depends "python-imaging" setup.py
 
 run:
 
