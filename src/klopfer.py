@@ -13,14 +13,13 @@ class Klopfer(object):
     def run(self):
         # open dir and get oldest file with the given extension
         dir = directory.Directory(os, self.import_dir, ['jpg', 'jpeg'])
-        imagefile = dir.get_oldest_file()
+        self.imagefile = dir.get_oldest_file()
 
         # open image
-        scan = scanner.Scanner(imagefile.name)
+        scan = scanner.Scanner(self.imagefile.name)
         informations = scan.scan()
 
-        # remove old image
-        os.remove(imagefile.name)
+        self.remove_image()
 
         # load board_id and cards
         mapping = mapper.Mapper(informations)
@@ -31,3 +30,7 @@ class Klopfer(object):
         current_board = board.Board(board_id, cards)
         # write baord to json
         current_board.export_json(self.export_dir)
+
+    # remove old image
+    def remove_image(self):
+        os.remove(self.imagefile.name)

@@ -15,12 +15,19 @@ else:
     export_dir = argv[2]
 
     if not os.path.isdir(import_dir):
-        raise IOError('Klopfer says: import directory is not a directory')
+        print 'Klopfer says: import directory is not a directory'
 
     if not os.path.isdir(export_dir):
-        raise IOError('Klopfer says: export directory is not a directory')
+        print 'Klopfer says: export directory is not a directory'
 
     klopfer = klopfer.Klopfer(import_dir, export_dir)
-    klopfer.run()
+    try:
+        klopfer.run()
+    except IOError as error:
+        print error
+        try:
+            klopfer.remove_image()
+        except:
+            pass
 
-
+            

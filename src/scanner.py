@@ -45,6 +45,9 @@ class Scanner(object):
             qr_sizes.append(qr_width)
             qr_sizes.append(qr_height)
 
+        if len(qr_sizes) == 0:
+            raise IOError('Klopfer says: no qr code scanned')
+
         return sum(qr_sizes, 0.0) / len(qr_sizes)
 
     def scan_image(self, img_scan, x_start, y_start):
