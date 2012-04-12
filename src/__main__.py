@@ -23,7 +23,7 @@ else:
     klopfer = klopfer.Klopfer(import_dir, export_dir)
     try:
         klopfer.run()
-    except IOError as error:
+    except Exception as error:
         print error
         try:
             klopfer.remove_image()
