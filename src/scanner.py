@@ -15,16 +15,19 @@ class Scanner(object):
         self.scanner.parse_config('enable')
 
     def scan(self):
-        pieces_size = int(self.get_qr_code_size() * 4)
-        step_size = int(pieces_size / 10)
+        pieces_size = int(self.get_qr_code_size() * 2)
+        step_size = int(pieces_size / 20)
+
+        y_start = 0
 
         iy = 0
-        while (iy * step_size) + pieces_size <= self.height:
+        while y_start < self.height:
             y_start = iy * step_size
             y_end = y_start + pieces_size
             iy += 1
             ix = 0
-            while (ix * step_size) + pieces_size <= self.width:
+            x_start = 0
+            while x_start < self.width:
                 x_start = ix * step_size
                 x_end = x_start + pieces_size
                 crop_to = (x_start, y_start, x_end, y_end)
