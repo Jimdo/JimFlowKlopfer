@@ -17,9 +17,8 @@ class Klopfer(object):
 
         # open image
         scan = scanner.Scanner(self.imagefile.name)
-        informations = scan.scan()
-
         self.remove_image()
+        informations = scan.scan()
 
         # load board_id and cards
         mapping = mapper.Mapper(informations)
