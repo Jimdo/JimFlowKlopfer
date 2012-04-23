@@ -16,7 +16,7 @@ class Scanner(object):
 
     def scan(self):
         pieces_size = int(self.get_qr_code_size() * 2)
-        step_size = int(pieces_size / 20)
+        step_size = int(pieces_size / 5)
 
         y_start = 0
 
