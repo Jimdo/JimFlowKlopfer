@@ -14,7 +14,13 @@ class Scanner(object):
         # configure the scanner
         self.scanner.parse_config('enable')
 
+    def image_optimize(self):
+        doubled_size = (self.image.size[0] * 2, self.image.size[1] * 2)
+        self.image = self.image.resize(doubled_size, Image.ANTIALIAS).convert('L')
+        self.width, self.height = self.image.size
+
     def scan(self):
+        self.image_optimize()
         pieces_size = int(self.get_qr_code_size() * 2)
         step_size = int(pieces_size / 5)
 
