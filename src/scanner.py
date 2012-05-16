@@ -21,9 +21,9 @@ class Scanner(object):
 
     def scan(self):
         self.image_optimize()
-        pieces_size = int(self.get_qr_code_size() * 2)
-        step_size = int(pieces_size / 5)
-
+        pieces_size = int(self.get_qr_code_size() * 3)
+        step_size = int(pieces_size / 3)
+        self.scan_image(self.image,0,0)
         y_start = 0
 
         iy = 0
@@ -40,6 +40,7 @@ class Scanner(object):
                 img_crop = self.image.crop(crop_to)
                 self.scan_image(img_crop, x_start, y_start)
                 ix += 1
+
         return self.informations
 
     def get_qr_code_size(self):
