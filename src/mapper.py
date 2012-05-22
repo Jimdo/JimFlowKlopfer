@@ -55,8 +55,8 @@ class Mapper(object):
         for card_information in card_informations:
             card = kanban.Card(card_information.data, card_information.location)
             card.column = self.get_column_for_card(card)
-            cards.append(card)
-
+            if card.column is not None:
+                cards.append(card)
         return cards
 
     def get_column_for_card(self, card):
