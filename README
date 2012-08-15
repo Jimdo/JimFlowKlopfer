@@ -1,13 +1,19 @@
 dependencies:
--python-zbar (http://pypi.python.org/pypi/zbar)
+-git
+-python-zbar
 -python-imaging
 
+1. get source
+git clone https://github.com/Jimdo/JimFlowKlopfer.git
+
+2.1
 install with pip:
-pip install --user jimkanklopfer/ 
+pip install JimFlowKlopfer/ 
 
+2.2
 build a dpkg using fpm:
-fpm --description "JimKanKlopfer - reads jpeg, outputs json" --url "https://github.com/Jimdo/jimkanklopfer" -s python -t deb -S 2.7 --depends "python" --depends "python-zbar" --depends "python-imaging" setup.py
+fpm --description "JimFlowKlopfer - reads jpeg, outputs json" --url "https://github.com/Jimdo/jimflowklopfer" -s python -t deb -S 2.7 --depends "python" --depends "python-zbar" --depends "python-imaging" setup.py
 
+3.
 run:
-
-python -m jimkanklopfer /import_path_photos/ /export_path_json/
+python -m jimflowklopfer.__main__ /import_path_photos/ /export_path_json/
