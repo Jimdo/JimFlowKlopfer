@@ -1,6 +1,6 @@
 from distutils.core import setup
-setup(name='jimkanklopfer',
+setup(name='jimflowklopfer',
       version='0.1',
-      package_dir={'jimkanklopfer': 'src'},
-      packages=['jimkanklopfer'],
+      package_dir={'jimflowklopfer': 'src'},
+      packages=['jimflowklopfer'],
       )
