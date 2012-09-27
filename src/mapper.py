@@ -1,5 +1,6 @@
 import kanban
 import json
+import re
 
 
 class Mapper(object):
@@ -14,6 +15,13 @@ class Mapper(object):
         matching_informations = []
         for information in self.informations:
             if information.data.startswith(startsWith):
+                matching_informations.append(information)
+        return matching_informations
+
+    def get_informations_starting_with_regex(self, startsWithRegex):
+        matching_informations = []
+        for information in self.informations:
+            if re.search(startsWithRegex, information.data):
                 matching_informations.append(information)
         return matching_informations
 
@@ -51,7 +59,7 @@ class Mapper(object):
 
     def get_cards(self):
         cards = []
-        card_informations = self.get_informations_starting_with('T')
+        card_informations = self.get_informations_starting_with_regex(r'[A-Z]')
         for card_information in card_informations:
             card = kanban.Card(card_information.data, card_information.location)
             card.column = self.get_column_for_card(card)
